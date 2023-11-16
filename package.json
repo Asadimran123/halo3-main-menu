@@ -1,0 +1,12 @@
+{
+  "name": "halo3-main-menu",
+  "version": "1.0.0",
+  "description": "a clone of the halo 3 main menu",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
