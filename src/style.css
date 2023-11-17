@@ -56,7 +56,6 @@
     
 }
 
-
 #show-trailer .trailer{
     visibility: hidden;
     background-color: transparent;
@@ -118,7 +117,7 @@
   }
 
   #trailer-escape-btn{
-    /* visibility: hidden; */
+    visibility: hidden;
     width: 200px;
     height: 70px;
     font-size: xx-large;
