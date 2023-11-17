@@ -14,10 +14,15 @@
     <video autoplay muted loop id="myVideo">
         <source src="/halo3-main-menu/assets/fly-by.mp4" type="video/mp4">
       </video>
+
     <div id="background">
         <div id="container">
             <span class="menu" id="show-trailer">
                 <button class="menu-btn" id="show-trailer-btn">TRAILER</button>
+                <video class="trailer" id="trailer" controls>
+                    <source src="/halo3-main-menu/assets/trailer.mp4" type="video/mp4">
+                    <button id="exit-trailer-btn">exit</button>
+                    </video>
             </span>
             <span class="menu" id="campaign">
                 <button class="menu-btn" id="campaign-btn">CAMPAIGN</button>
@@ -35,10 +40,9 @@
                 <button class="menu-btn" id="theater-btn">THEATER</button>
             </span> 
         </div>
-
-        <!-- <div id="halo3">
-            HALO 3
-        </div> -->
+        <div id="trailer-escape">
+            <button id="trailer-escape-btn"> escape</button>
+        </div>
         <h1 id="halo3">HALO 3</h1>
         <div id="Asad-Imran">
             Asad Imran
