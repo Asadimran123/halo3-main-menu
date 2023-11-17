@@ -123,10 +123,13 @@
     font-size: xx-large;
     border-radius: 5px;
   }
+
   #trailer-escape-btn:hover{
     background-color: lightblue;
   }
+
   #trailer-escape-btn:active{
     background-color: yellow;
   }
+
 
