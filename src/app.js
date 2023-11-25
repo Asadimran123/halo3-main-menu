@@ -6,6 +6,10 @@ const trailer_escape_btn = document.getElementById('trailer-escape-btn');
 /** theater menu vars */
 const film_list_btn = document.getElementById('change-film-btn');
 const film_list = document.getElementById('film-menu');
+const switch_lobby_btn = document.getElementById('switch-lobby-btn')
+const lobby_list = document.getElementById('switch-lobby-menu')
+const msg_div = document.getElementById('msg-div');
+
 
 /** theater film btns */
 const guardian_no_scp_btn = document.getElementById('guardian-ns-btn');
@@ -47,13 +51,25 @@ if(trailer_escape_btn){
 
 /** function that toggles the film list visibility */
 const toggle_film_list = () =>{
-    console.log('click')
     if (film_list.style.display == 'none'){
         film_list.style.display = 'block';
+        lobby_list.style.display = 'none'
     }
     else{
         film_list.style.display = 'none'
     }
+    msg_div.style.display = 'none';
+}
+
+const toggle_lobby_menu = ()=>{
+    if (lobby_list.style.display == 'none'){
+        lobby_list.style.display = 'block';
+        film_list.style.display = 'none'
+    }
+    else{
+        lobby_list.style.display = 'none'
+    }
+    msg_div.style.display = 'none';
 }
 
 /** function that will create video element for guardian clip and escape button  */
@@ -188,6 +204,10 @@ const play_h2a_vid = ()=>{
 /** event listener for film list visibility */
 if(film_list_btn){
     film_list_btn.addEventListener('click', toggle_film_list)
+}
+
+if(switch_lobby_btn){
+    switch_lobby_btn.addEventListener('click', toggle_lobby_menu)
 }
 
 

@@ -21,5 +21,9 @@ trailer play vs clips play (11/23/23)
  bugs
  (11/23) theater lobby film switch btn
  - it takes two click for film list to display on first time. has to do with initial state of the film div
- 
 
+
+potential refactors
+(11/24) - theator lobby menus. 
+- they are currently just displayed as none for initial state
+- refactor to create lobbies on button click

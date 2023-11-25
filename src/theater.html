@@ -10,7 +10,11 @@
     <video autoplay muted loop id="myVideo">
         <source src="/assets/fly-by.mp4" type="video/mp4">
       </video>
+      <audio src="/assets/music.mp3" id="music" autoplay loop></audio>
         <h1 id="theater-header">THEATER LOBBY</h1>
+        <div id="msg-div">
+            <p id="msg"> Hi everyone. In the film list are some personal clips of me playing Halo 3 for you to enjoy. Thanks for stopping by!</p>
+        </div>
         <div id="theater-lobby-menu">
             <span class="menu" id="switch-lobby">
                 <button class="menu-btn" id="switch-lobby-btn">SWITCH LOBBY</button>
@@ -21,6 +25,26 @@
             <!-- <span class="menu" id="start-film">
                 <button class="menu-btn" id="start-film-btn">START FILM</button>
             </span> -->
+        </div>
+        <div id="switch-lobby-menu">
+            <ul id="lobby-list">
+                <h1 id="lobby-header">select lobby</h1>
+                <span class="menu" id="main-menu-select">
+                    <button class="menu-btn" id="main-menu-btn" onclick="location.href = 'index.html';">MAIN MENU</button>
+                </span>
+                <span class="menu" id="campaign-select">
+                    <button class="menu-btn" id="campaign-btn">CAMPAIGN (COMING SOON)</button>
+                </span>
+                <span class="menu" id="matchmaking-select">
+                    <button class="menu-btn" id="matchmaking-btn">MATCHMAKING (COMING SOON)</button>
+                </span>
+                <span class="menu" id="custom-games-select">
+                    <button class="menu-btn" id="custom-games-btn">CUSTOM GAMES (COMING SOON)</button>
+                </span>
+                <span class="menu" id="forge-select">
+                    <button class="menu-btn" id="forge-btn">FORGE (COMING SOON)</button>
+                </span>
+            </ul>
         </div>
         <div id="film-menu">
             <ul id="film-list">

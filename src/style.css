@@ -38,7 +38,7 @@
     position: fixed;
     left:1810px;
     top:900px;
-    font-size: 50px;
+    font-size: 45px;
     color: lightblue;
 }
 
@@ -48,7 +48,7 @@
     color: lightblue;
     font-size: x-large;
     width: 480px;
-    height: 32px;
+    height: 45px;
     text-align: left;
     z-index: 1;
 }
@@ -171,41 +171,40 @@
   z-index: -1;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-/* #guardian-no-scope{
-  position: fixed;
-  left: 350px;
-  top: 300px;
-  z-index: 0;
-}
-
-.clip{
-  height: 750px;
-}
-
-.exit-clip-btn{
-  position: relative;
-  display: block;
-  visibility: hidden;
-  width: 200px;
-  height: 70px;
-  font-size: xx-large;
+#switch-lobby-menu{
+  position:fixed;
+  left: 570px;
+  top: 140px;
+  margin-left: 0px;
+  display: none;
   border-radius: 5px;
-  left: 600px;
-  
+  width: 500px;
+  z-index: -1;
 }
 
-#guardian-no-scope-vid{
-  visibility: hidden;
-} */
+#lobby-header{
+  color: lightblue;
+  position: relative;
+  font-family: sans-serif;
+  left: 15px;
+  z-index: -1;
+}
+
+
+#msg-div{
+  color: lightblue;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 300px;
+  position: relative;
+  font-size: xx-large;
+}
+
+
+
+
+
+
+
+
