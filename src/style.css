@@ -38,7 +38,7 @@
     position: fixed;
     left:1810px;
     top:900px;
-    font-size: 50px;
+    font-size: 45px;
     color: lightblue;
 }
 
@@ -48,8 +48,9 @@
     color: lightblue;
     font-size: x-large;
     width: 480px;
-    height: 32px;
+    height: 45px;
     text-align: left;
+    z-index: 1;
 }
 .menu:hover{
     background-image: linear-gradient(to right, orange, transparent);
@@ -131,5 +132,79 @@
   #trailer-escape-btn:active{
     background-color: yellow;
   }
+
+
+#theater-header{
+  color: white;
+  position: fixed;
+  left: 160px;
+  color: lightblue;
+  font-size: 60px;
+  z-index: -1;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+#theater-lobby-menu{
+  position: fixed;
+  width: 500px;
+  left: 150px;
+  top: 150px;
+  z-index: -1;
+}
+
+#films-header{
+  color: lightblue;
+  position: relative;
+  font-family: sans-serif;
+  left: 15px;
+  z-index: -1;
+}
+#film-menu{
+  position:fixed;
+  left: 570px;
+  top: 200px;
+  margin-left: 0px;
+  /* visibility: hidden; */
+  display: none;
+  border-radius: 5px;
+  width: 500px;
+  z-index: -1;
+}
+
+#switch-lobby-menu{
+  position:fixed;
+  left: 570px;
+  top: 140px;
+  margin-left: 0px;
+  display: none;
+  border-radius: 5px;
+  width: 500px;
+  z-index: -1;
+}
+
+#lobby-header{
+  color: lightblue;
+  position: relative;
+  font-family: sans-serif;
+  left: 15px;
+  z-index: -1;
+}
+
+
+#msg-div{
+  color: lightblue;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 300px;
+  position: relative;
+  font-size: xx-large;
+}
+
+
+
+
+
+
 
 

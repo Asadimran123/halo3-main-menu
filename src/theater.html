@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>theater page</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <video autoplay muted loop id="myVideo">
+        <source src="/assets/fly-by.mp4" type="video/mp4">
+      </video>
+      <audio src="/assets/music.mp3" id="music" autoplay loop></audio>
+        <h1 id="theater-header">THEATER LOBBY</h1>
+        <div id="msg-div">
+            <p id="msg"> Hi everyone. In the film list are some personal clips of me playing Halo 3 for you to enjoy. Thanks for stopping by!</p>
+        </div>
+        <div id="theater-lobby-menu">
+            <span class="menu" id="switch-lobby">
+                <button class="menu-btn" id="switch-lobby-btn">SWITCH LOBBY</button>
+            </span>
+            <span class="menu" id="change-film">
+                <button class="menu-btn" id="change-film-btn">FILM LIST</button>
+            </span>
+            <!-- <span class="menu" id="start-film">
+                <button class="menu-btn" id="start-film-btn">START FILM</button>
+            </span> -->
+        </div>
+        <div id="switch-lobby-menu">
+            <ul id="lobby-list">
+                <h1 id="lobby-header">select lobby</h1>
+                <span class="menu" id="main-menu-select">
+                    <button class="menu-btn" id="main-menu-btn" onclick="location.href = 'index.html';">MAIN MENU</button>
+                </span>
+                <span class="menu" id="campaign-select">
+                    <button class="menu-btn" id="campaign-btn">CAMPAIGN (COMING SOON)</button>
+                </span>
+                <span class="menu" id="matchmaking-select">
+                    <button class="menu-btn" id="matchmaking-btn">MATCHMAKING (COMING SOON)</button>
+                </span>
+                <span class="menu" id="custom-games-select">
+                    <button class="menu-btn" id="custom-games-btn">CUSTOM GAMES (COMING SOON)</button>
+                </span>
+                <span class="menu" id="forge-select">
+                    <button class="menu-btn" id="forge-btn">FORGE (COMING SOON)</button>
+                </span>
+            </ul>
+        </div>
+        <div id="film-menu">
+            <ul id="film-list">
+                <h1 id="films-header">films</h1>
+                <span class="menu" id="guardian-ns">
+                    <button class="menu-btn" id="guardian-ns-btn">GUARDIAN NO SCOPE</button>
+                </span>
+                <span class="menu" id="valhalla-ns">
+                    <button class="menu-btn" id="valhalla-ns-btn">VALHALLA NO SCOPE</button>
+                </span>
+                <span class="menu" id="construct-ns">
+                    <button class="menu-btn" id="construct-ns-btn">CONSTRUCT NO SCOPE</button>
+                </span>
+                <span class="menu" id="funny-banshee-ns">
+                    <button class="menu-btn" id="funny-banshee-btn">FUNNY BANSHEE</button>
+                </span>
+                <span class="menu" id="h2a-ns">
+                    <button class="menu-btn" id="h2a-ns-btn">H2A NO SCOPE</button>
+                </span>
+            </ul>
+        </div>
+
+      
+    <script src="app.js"></script>
+</body>
+</html>
