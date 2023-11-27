@@ -201,7 +201,19 @@
   font-size: xx-large;
 }
 
-
+#campaign-menu{
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  width: 600px;
+}
+#campaign-header{
+  color: lightblue;
+  font-family: sans-serif;
+  position: relative;
+  left: 50px;
+  font-size: 60px;
+}
 
 
 
