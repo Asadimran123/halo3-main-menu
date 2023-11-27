@@ -14,17 +14,18 @@ const select_mission_btn = document.getElementById('mission-select-btn');
 const difficulty_select_btn = document.getElementById('difficulty-select-btn');
 const start_btn = document.getElementById('start-btn');
 let missions_displayed = false; 
-const missions = [
-'Arrival',
-'Sierra 117', 
-'Crows Nest', 
-'Tsavo Highway', 
-'The Storm', 
-'Floodgate', 
-'The Ark', 
-'The Covenant', 
-'Cortana', 
-'Halo']
+const missions = {
+'Arrival' : 'https://www.youtube.com/watch?v=Wwxurxoto8o&list=PLDfrsfmqhSRYVm7GkbOIdwNnenZfhaS8P',
+'Sierra 117' : 'https://www.youtube.com/watch?v=izBxWgFdvJo&list=PLDfrsfmqhSRYVm7GkbOIdwNnenZfhaS8P&index=2', 
+'Crows Nest' : 'https://www.youtube.com/watch?v=KSlr65zT2_Q&list=PLDfrsfmqhSRYVm7GkbOIdwNnenZfhaS8P&index=3', 
+'Tsavo Highway' : 'https://www.youtube.com/watch?v=mYMGFw2k3wg&list=PLDfrsfmqhSRYVm7GkbOIdwNnenZfhaS8P&index=4', 
+'The Storm' : 'https://www.youtube.com/watch?v=4pVRNY4YUis&list=PLDfrsfmqhSRYVm7GkbOIdwNnenZfhaS8P&index=5', 
+'Floodgate' : 'https://www.youtube.com/watch?v=pu3Y2pDfHkI&list=PLDfrsfmqhSRYVm7GkbOIdwNnenZfhaS8P&index=6', 
+'The Ark' : 'https://www.youtube.com/watch?v=j4USgAHFO4M&list=PLDfrsfmqhSRYVm7GkbOIdwNnenZfhaS8P&index=7', 
+'The Covenant' : 'https://www.youtube.com/watch?v=6wbp6plTFrE&list=PLDfrsfmqhSRYVm7GkbOIdwNnenZfhaS8P&index=8', 
+'Cortana' : 'https://www.youtube.com/watch?v=5UsCy9OwxKs&list=PLDfrsfmqhSRYVm7GkbOIdwNnenZfhaS8P&index=9', 
+'Halo' : 'https://www.youtube.com/watch?v=fs4EXVOtP9E&list=PLDfrsfmqhSRYVm7GkbOIdwNnenZfhaS8P&index=10', 
+'Epilogue' : 'https://www.youtube.com/watch?v=UfAjn8PTRBE&list=PLDfrsfmqhSRYVm7GkbOIdwNnenZfhaS8P&index=11'}
 
 /** theater menu vars */
 const film_list_btn = document.getElementById('change-film-btn');
@@ -76,12 +77,18 @@ if(trailer_escape_btn){
 
 
 /** CAMPAIGN PAGE */
+const get_mission = (e)=>{
+    console.log(e.target.innerText);
+    return e.target.innerText;
+}
 
+
+
+/** creates mission list for campaign menu */
 const create_mission_list = () =>{
     let mission_list = document.getElementById('mission_list');
     if(!mission_list){
-        console.log('aaa')
-        const mission_list = document.createElement('div')
+        mission_list = document.createElement('div')
         mission_list.setAttribute('id', 'mission_list')
         body.appendChild(mission_list);
         mission_list.style.zIndex = '1';
@@ -94,11 +101,13 @@ const create_mission_list = () =>{
         mission_list.style.top = '175px'
         const ordered_mission_list = document.createElement('ol');
         mission_list.appendChild(ordered_mission_list);
-        for (let mission of missions){
-            const m = document.createElement('li');
+        for (let mission in missions){
+            const m = document.createElement('btn');
             ordered_mission_list.appendChild(m)
             m.innerText = mission;
+            m.setAttribute('id', mission)
             m.className = 'menu menu-btn';
+            m.addEventListener('click', get_mission);   //add event listeners to each button
         }
         missions_displayed = true;
     }
@@ -111,6 +120,8 @@ const create_mission_list = () =>{
 if(select_mission_btn){
     select_mission_btn.addEventListener('click', create_mission_list);
 }
+
+
 
 
 /**     THEATER PAGE     */
