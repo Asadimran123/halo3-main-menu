@@ -14,6 +14,7 @@ const select_mission_btn = document.getElementById('mission-select-btn');
 const difficulty_select_btn = document.getElementById('difficulty-select-btn');
 const start_btn = document.getElementById('start-btn');
 let missions_displayed = false; 
+
 const missions = {
 'Arrival' : 'https://www.youtube.com/watch?v=Wwxurxoto8o&list=PLDfrsfmqhSRYVm7GkbOIdwNnenZfhaS8P',
 'Sierra 117' : 'https://www.youtube.com/watch?v=izBxWgFdvJo&list=PLDfrsfmqhSRYVm7GkbOIdwNnenZfhaS8P&index=2', 
@@ -26,6 +27,20 @@ const missions = {
 'Cortana' : 'https://www.youtube.com/watch?v=5UsCy9OwxKs&list=PLDfrsfmqhSRYVm7GkbOIdwNnenZfhaS8P&index=9', 
 'Halo' : 'https://www.youtube.com/watch?v=fs4EXVOtP9E&list=PLDfrsfmqhSRYVm7GkbOIdwNnenZfhaS8P&index=10', 
 'Epilogue' : 'https://www.youtube.com/watch?v=UfAjn8PTRBE&list=PLDfrsfmqhSRYVm7GkbOIdwNnenZfhaS8P&index=11'}
+
+const mission_images = {
+'Arrival' : 'https://live.staticflickr.com/7782/17523073088_3986615bce_b.jpg',
+'Sierra 117' : 'https://mp1st.com/wp-content/uploads/2022/04/Screenshot_31.png', 
+'Crows Nest' : 'https://halo.wiki.gallery/images/thumb/3/34/H3_CrowsNest_Loadscreen.png/1200px-H3_CrowsNest_Loadscreen.png', 
+'Tsavo Highway' : 'https://halo.wiki.gallery/images/thumb/d/d6/H3_TsavoHighway_Loadscreen.png/1200px-H3_TsavoHighway_Loadscreen.png', 
+'The Storm' : 'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/7d4cc70b-f7c4-499a-a91a-f3e86b8b39f0/d6dqam6-ac02e111-a731-4cb2-b201-97a687cd45cf.jpg/v1/fill/w_1024,h_600,q_75,strp/halo_3___the_storm_by_halomika_d6dqam6-fullview.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9NjAwIiwicGF0aCI6IlwvZlwvN2Q0Y2M3MGItZjdjNC00OTlhLWE5MWEtZjNlODZiOGIzOWYwXC9kNmRxYW02LWFjMDJlMTExLWE3MzEtNGNiMi1iMjAxLTk3YTY4N2NkNDVjZi5qcGciLCJ3aWR0aCI6Ijw9MTAyNCJ9XV0sImF1ZCI6WyJ1cm46c2VydmljZTppbWFnZS5vcGVyYXRpb25zIl19.0HGvyT92E4wlijbMkxwpKU-ZRi25kyMT3Ig0ncjY8-I', 
+'Floodgate' : 'https://halo.wiki.gallery/images/thumb/6/67/H3_Floodgate_Loadscreen.png/1200px-H3_Floodgate_Loadscreen.png', 
+'The Ark' : 'https://halo.wiki.gallery/images/thumb/1/1a/H3_TheArk_Loadscreen.png/1200px-H3_TheArk_Loadscreen.png', 
+'The Covenant' : 'https://i.ytimg.com/vi/qgVQ0Hl7A30/sddefault.jpg', 
+'Cortana' : 'https://halo.wiki.gallery/images/thumb/8/82/High_Charity_Infested.jpg/1200px-High_Charity_Infested.jpg', 
+'Halo' : 'https://pm1.aminoapps.com/6442/d55f670a773789b57658939395dd4181fc36585d_hq.jpg', 
+'Epilogue' : 'https://halo.wiki.gallery/images/thumb/d/d4/H3_Epilogue_Loadscreen.png/1200px-H3_Epilogue_Loadscreen.png'
+}
 
 /** theater menu vars */
 const film_list_btn = document.getElementById('change-film-btn');
@@ -78,39 +93,88 @@ if(trailer_escape_btn){
 
 /** CAMPAIGN PAGE */
 const get_mission = (e)=>{
-    console.log(e.target.innerText);
-    return e.target.innerText;
-}
+    let mission = e.target.innerText;
+    let link = missions[mission]
+    console.log(mission, link)
+    
+    let mission_display = document.getElementById('mission-display');
+    const mission_list = document.getElementById('mission_list')
 
+    
+
+    mission_list.remove();
+
+    // if (mission_display){        
+    //     const mission_header = document.getElementById('mission-header')
+    //     const mission_image = document.getElementById('mission-img')
+    //     mission_header.innerText = mission;
+    //     mission_image.src = mission_images[mission];
+    // }
+
+    mission_display = document.createElement('div');
+    mission_display.setAttribute('id', 'mission-display')
+
+    let mission_header = document.createElement('h1');
+    let mission_image = document.createElement('img')
+    mission_header.setAttribute('id', 'mission-header');
+    mission_image.setAttribute('id', 'mission-img')
+
+    body.appendChild(mission_display);
+    mission_display.appendChild(mission_header);
+    mission_display.appendChild(mission_image)
+
+    mission_header.textContent = mission;
+    mission_header.style.color = 'lightblue'
+
+    mission_display.style.position = 'fixed';
+    mission_display.style.left = '60px'
+
+    mission_image.src = mission_images[mission]
+    mission_image.style.height = '600px'
+    mission_image.style.width = '900px'
+    mission_image.style.border = 'lightblue 3px solid'
+    mission_image.style.boxShadow = '5px'
+
+}
 
 
 /** creates mission list for campaign menu */
 const create_mission_list = () =>{
     let mission_list = document.getElementById('mission_list');
+    const mission_display = document.getElementById('mission-display')
+    
+    if(mission_display){
+        mission_display.remove()
+    }
+    
     if(!mission_list){
         mission_list = document.createElement('div')
         mission_list.setAttribute('id', 'mission_list')
         body.appendChild(mission_list);
+
         mission_list.style.zIndex = '1';
         mission_list.style.height = '800px'
-        mission_list.style.width = '400px'
+        mission_list.style.width = '200px'
         mission_list.style.position = 'fixed'
         mission_list.style.display = 'flex'
         mission_list.style.flexDirection = 'column'
         mission_list.style.left = '500px'
         mission_list.style.top = '175px'
+
         const ordered_mission_list = document.createElement('ol');
         mission_list.appendChild(ordered_mission_list);
+
         for (let mission in missions){
             const m = document.createElement('btn');
             ordered_mission_list.appendChild(m)
             m.innerText = mission;
             m.setAttribute('id', mission)
             m.className = 'menu menu-btn';
+            m.style.width = '250px'
             m.addEventListener('click', get_mission);   //add event listeners to each button
         }
-        missions_displayed = true;
     }
+
     else{
         mission_list.remove();
     }
