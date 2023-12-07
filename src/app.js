@@ -42,6 +42,14 @@ const mission_images = {
 'Epilogue' : 'https://halo.wiki.gallery/images/thumb/d/d4/H3_Epilogue_Loadscreen.png/1200px-H3_Epilogue_Loadscreen.png'
 }
 
+const lobbies = [
+    'MAIN MENU',
+    'MATCHMAKING (COMING SOON)',
+    'CUSTOM GAMES (COMING SOON)',
+    'FORGE (COMING SOON)',
+    'THEATER'
+]
+
 /** theater menu vars */
 const film_list_btn = document.getElementById('change-film-btn');
 const film_list = document.getElementById('film-menu');
@@ -100,16 +108,7 @@ const get_mission = (e)=>{
     let mission_display = document.getElementById('mission-display');
     const mission_list = document.getElementById('mission_list')
 
-    
-
     mission_list.remove();
-
-    // if (mission_display){        
-    //     const mission_header = document.getElementById('mission-header')
-    //     const mission_image = document.getElementById('mission-img')
-    //     mission_header.innerText = mission;
-    //     mission_image.src = mission_images[mission];
-    // }
 
     mission_display = document.createElement('div');
     mission_display.setAttribute('id', 'mission-display')
@@ -134,15 +133,20 @@ const get_mission = (e)=>{
     mission_image.style.width = '900px'
     mission_image.style.border = 'lightblue 3px solid'
     mission_image.style.boxShadow = '5px'
-
 }
 
 
 /** creates mission list for campaign menu */
 const create_mission_list = () =>{
     let mission_list = document.getElementById('mission_list');
-    const mission_display = document.getElementById('mission-display')
-    
+    const mission_display = document.getElementById('mission-display');
+    let lobby_list = document.getElementById('lobby-list')
+
+    if(lobby_list){
+        lobby_list.remove()
+    }
+
+
     if(mission_display){
         mission_display.remove()
     }
@@ -180,12 +184,77 @@ const create_mission_list = () =>{
     }
 }
 
+const goto_lobby = (e) =>{
+    const lobby = e.target.innerText;
+
+    switch(lobby){
+        case lobbies[0]:
+            console.log(lobbies[0])
+            window.location.href='./index.html';
+            break;
+        case lobbies[1]:
+            console.log(lobbies[1])
+            break;
+        case lobbies[2]:
+            console.log(lobbies[2])
+            break;
+        case lobbies[3]:
+            console.log(lobbies[3])
+            break;
+        case lobbies[4]:
+            console.log(lobbies[4])
+            window.location.href='./theater.html';
+            break;
+    }
+}
+
+const campaign_switch_lobby_toggle = () =>{
+    let lobby_list = document.getElementById('lobby-list')
+    let mission_list = document.getElementById('mission_list');
+
+    if(mission_list){
+        mission_list.remove()
+    }
+
+    if(!lobby_list){
+        lobby_list = document.createElement('div');
+        lobby_list.setAttribute('id', 'lobby-list');
+        body.appendChild(lobby_list);
+
+        lobby_list.style.zIndex = '1';
+        lobby_list.style.height = '400px'
+        lobby_list.style.width = '200px'
+        lobby_list.style.position = 'fixed'
+        lobby_list.style.display = 'flex'
+        lobby_list.style.flexDirection = 'column'
+        lobby_list.style.left = '500px'
+        lobby_list.style.top = '175px'
+
+        const ordered_lobby_list = document.createElement('ol');
+        lobby_list.appendChild(ordered_lobby_list);
+
+        for(let lobby of lobbies){
+            const l = document.createElement('btn');
+            ordered_lobby_list.appendChild(l);
+            l.innerText = lobby;
+            l.setAttribute('id', lobby);
+            l.className='menu menu-btn';
+            l.style.width='400px';
+            l.addEventListener('click', goto_lobby)
+        }
+    }
+    else{
+        lobby_list.remove()
+    }
+}
 
 if(select_mission_btn){
     select_mission_btn.addEventListener('click', create_mission_list);
 }
 
-
+if(campaign_switch_lobby_btn){
+    campaign_switch_lobby_btn.addEventListener('click', campaign_switch_lobby_toggle);
+}
 
 
 /**     THEATER PAGE     */

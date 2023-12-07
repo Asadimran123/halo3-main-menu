@@ -24,14 +24,14 @@
 }
 
 #halo3{
-    position: fixed;
+    position: relative;
     left:1500px;
     top: 700px;
     font-size: 100px;
     font-family: 'Halo', sans-serif;
     color: lightblue;
     z-index: -1;
-    
+    display: block;
 }
 
 #Asad-Imran{
