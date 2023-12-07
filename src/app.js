@@ -50,6 +50,13 @@ const lobbies = [
     'THEATER'
 ]
 
+const difficulties = [
+    'EASY', 
+    'NORMAL', 
+    'HEROIC', 
+    'LEGENDARY'
+];
+
 /** theater menu vars */
 const film_list_btn = document.getElementById('change-film-btn');
 const film_list = document.getElementById('film-menu');
@@ -138,9 +145,16 @@ const get_mission = (e)=>{
 
 /** creates mission list for campaign menu */
 const create_mission_list = () =>{
+
+    let difficulty_list = document.getElementById('difficulty-list');
     let mission_list = document.getElementById('mission_list');
-    const mission_display = document.getElementById('mission-display');
     let lobby_list = document.getElementById('lobby-list')
+    const mission_display = document.getElementById('mission-display');
+
+
+    if(difficulty_list){
+        difficulty_list.remove();
+    }
 
     if(lobby_list){
         lobby_list.remove()
@@ -209,8 +223,13 @@ const goto_lobby = (e) =>{
 }
 
 const campaign_switch_lobby_toggle = () =>{
-    let lobby_list = document.getElementById('lobby-list')
+    let difficulty_list = document.getElementById('difficulty-list');
     let mission_list = document.getElementById('mission_list');
+    let lobby_list = document.getElementById('lobby-list')
+
+    if(difficulty_list){
+        difficulty_list.remove();
+    }
 
     if(mission_list){
         mission_list.remove()
@@ -248,6 +267,52 @@ const campaign_switch_lobby_toggle = () =>{
     }
 }
 
+const select_difficulty = () =>{
+    let difficulty_list = document.getElementById('difficulty-list');
+    let mission_list = document.getElementById('mission_list');
+    let lobby_list = document.getElementById('lobby-list')
+
+    if(lobby_list){
+        lobby_list.remove()
+    }
+
+    if(mission_list){
+        mission_list.remove()
+    }
+
+    if(!difficulty_list){
+        difficulty_list = document.createElement('div');
+        difficulty_list.setAttribute('id', 'difficulty-list');
+        body.appendChild(difficulty_list);
+
+        difficulty_list.style.zIndex = '1';
+        difficulty_list.style.height = '400px'
+        difficulty_list.style.width = '200px'
+        difficulty_list.style.position = 'fixed'
+        difficulty_list.style.display = 'flex'
+        difficulty_list.style.flexDirection = 'column'
+        difficulty_list.style.left = '500px'
+        difficulty_list.style.top = '175px'
+
+        const ordered_difficulty_list = document.createElement('ol');
+        difficulty_list.appendChild(ordered_difficulty_list);
+
+        for(let difficulty of difficulties){
+            const d = document.createElement('btn');
+            ordered_difficulty_list.appendChild(d);
+            d.innerText = difficulty;
+            d.setAttribute('id', difficulty);
+            d.className='menu menu-btn';
+            d.style.width='400px';
+        }
+    }
+    else{
+        difficulty_list.remove();
+    }
+
+
+}
+
 if(select_mission_btn){
     select_mission_btn.addEventListener('click', create_mission_list);
 }
@@ -255,6 +320,11 @@ if(select_mission_btn){
 if(campaign_switch_lobby_btn){
     campaign_switch_lobby_btn.addEventListener('click', campaign_switch_lobby_toggle);
 }
+
+if(difficulty_select_btn){
+    difficulty_select_btn.addEventListener('click', select_difficulty);
+}
+
 
 
 /**     THEATER PAGE     */
