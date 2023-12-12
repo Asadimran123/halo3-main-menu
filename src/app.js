@@ -267,6 +267,27 @@ const campaign_switch_lobby_toggle = () =>{
     }
 }
 
+const display_difficulty = (e)=>{
+    const difficulty_list = document.getElementById('difficulty-list');
+    const difficulty = e.target.innerText;
+    let difficulty_text = document.getElementById('difficulty-text')
+
+    if(!difficulty_text){
+        difficulty_text = document.createElement('p')
+        difficulty_text.setAttribute('id', 'difficulty-text')
+        difficulty_text.innerText = difficulty
+        difficulty_text.className = 'menu-btn'
+        difficulty_text.style.position = 'fixed'
+        difficulty_text.style.left = '62px'
+        difficulty_text.style.top = '410px'
+        body.appendChild(difficulty_text);
+    }
+    else{
+        difficulty_text.innerText = difficulty;
+    }
+    difficulty_list.remove();
+}
+
 const select_difficulty = () =>{
     let difficulty_list = document.getElementById('difficulty-list');
     let mission_list = document.getElementById('mission_list');
@@ -304,12 +325,12 @@ const select_difficulty = () =>{
             d.setAttribute('id', difficulty);
             d.className='menu menu-btn';
             d.style.width='400px';
+            d.addEventListener('click', display_difficulty)
         }
     }
     else{
         difficulty_list.remove();
     }
-
 
 }
 

@@ -199,7 +199,14 @@
   top: 300px;
   position: relative;
   font-size: xx-large;
+  animation: blinker 2s linear infinite;
 }
+@keyframes blinker {
+  50% {
+    opacity: 0;
+  }
+}
+
 
 #campaign-menu{
   display: flex;
