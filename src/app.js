@@ -13,33 +13,37 @@ const campaign_switch_lobby_btn = document.getElementById('campaign-switch-lobby
 const select_mission_btn = document.getElementById('mission-select-btn');
 const difficulty_select_btn = document.getElementById('difficulty-select-btn');
 const start_btn = document.getElementById('start-btn');
+const stopButton = document.getElementById('mission-stop-btn')
 let missions_displayed = false; 
+let mission = null;
+let iframe = document.getElementById('vid-iframe');
+
 
 const missions = {
-'Arrival' : 'https://www.youtube.com/watch?v=Wwxurxoto8o&list=PLDfrsfmqhSRYVm7GkbOIdwNnenZfhaS8P',
-'Sierra 117' : 'https://www.youtube.com/watch?v=izBxWgFdvJo&list=PLDfrsfmqhSRYVm7GkbOIdwNnenZfhaS8P&index=2', 
-'Crows Nest' : 'https://www.youtube.com/watch?v=KSlr65zT2_Q&list=PLDfrsfmqhSRYVm7GkbOIdwNnenZfhaS8P&index=3', 
-'Tsavo Highway' : 'https://www.youtube.com/watch?v=mYMGFw2k3wg&list=PLDfrsfmqhSRYVm7GkbOIdwNnenZfhaS8P&index=4', 
-'The Storm' : 'https://www.youtube.com/watch?v=4pVRNY4YUis&list=PLDfrsfmqhSRYVm7GkbOIdwNnenZfhaS8P&index=5', 
-'Floodgate' : 'https://www.youtube.com/watch?v=pu3Y2pDfHkI&list=PLDfrsfmqhSRYVm7GkbOIdwNnenZfhaS8P&index=6', 
-'The Ark' : 'https://www.youtube.com/watch?v=j4USgAHFO4M&list=PLDfrsfmqhSRYVm7GkbOIdwNnenZfhaS8P&index=7', 
-'The Covenant' : 'https://www.youtube.com/watch?v=6wbp6plTFrE&list=PLDfrsfmqhSRYVm7GkbOIdwNnenZfhaS8P&index=8', 
-'Cortana' : 'https://www.youtube.com/watch?v=5UsCy9OwxKs&list=PLDfrsfmqhSRYVm7GkbOIdwNnenZfhaS8P&index=9', 
-'Halo' : 'https://www.youtube.com/watch?v=fs4EXVOtP9E&list=PLDfrsfmqhSRYVm7GkbOIdwNnenZfhaS8P&index=10', 
-'Epilogue' : 'https://www.youtube.com/watch?v=UfAjn8PTRBE&list=PLDfrsfmqhSRYVm7GkbOIdwNnenZfhaS8P&index=11'}
+'ARRIVAL' : 'https://www.youtube.com/watch?v=Wwxurxoto8o&list=PLDfrsfmqhSRYVm7GkbOIdwNnenZfhaS8P',
+'SIERRA 117' : 'https://www.youtube.com/watch?v=izBxWgFdvJo&list=PLDfrsfmqhSRYVm7GkbOIdwNnenZfhaS8P&index=2', 
+'CROWS NEST' : 'https://www.youtube.com/watch?v=KSlr65zT2_Q&list=PLDfrsfmqhSRYVm7GkbOIdwNnenZfhaS8P&index=3', 
+'TSAVO HIGHWAY' : 'https://www.youtube.com/watch?v=mYMGFw2k3wg&list=PLDfrsfmqhSRYVm7GkbOIdwNnenZfhaS8P&index=4', 
+'THE STORM' : 'https://www.youtube.com/watch?v=4pVRNY4YUis&list=PLDfrsfmqhSRYVm7GkbOIdwNnenZfhaS8P&index=5', 
+'FLOODGATE' : 'https://www.youtube.com/watch?v=pu3Y2pDfHkI&list=PLDfrsfmqhSRYVm7GkbOIdwNnenZfhaS8P&index=6', 
+'THE ARK' : 'https://www.youtube.com/watch?v=j4USgAHFO4M&list=PLDfrsfmqhSRYVm7GkbOIdwNnenZfhaS8P&index=7', 
+'THE COVENANT' : 'https://www.youtube.com/watch?v=6wbp6plTFrE&list=PLDfrsfmqhSRYVm7GkbOIdwNnenZfhaS8P&index=8', 
+'CORTANA' : 'https://www.youtube.com/watch?v=5UsCy9OwxKs&list=PLDfrsfmqhSRYVm7GkbOIdwNnenZfhaS8P&index=9', 
+'HALO' : 'https://www.youtube.com/watch?v=fs4EXVOtP9E&list=PLDfrsfmqhSRYVm7GkbOIdwNnenZfhaS8P&index=10', 
+'EPILOGUE' : 'https://www.youtube.com/watch?v=UfAjn8PTRBE&list=PLDfrsfmqhSRYVm7GkbOIdwNnenZfhaS8P&index=11'}
 
 const mission_images = {
-'Arrival' : 'https://live.staticflickr.com/7782/17523073088_3986615bce_b.jpg',
-'Sierra 117' : 'https://mp1st.com/wp-content/uploads/2022/04/Screenshot_31.png', 
-'Crows Nest' : 'https://halo.wiki.gallery/images/thumb/3/34/H3_CrowsNest_Loadscreen.png/1200px-H3_CrowsNest_Loadscreen.png', 
-'Tsavo Highway' : 'https://halo.wiki.gallery/images/thumb/d/d6/H3_TsavoHighway_Loadscreen.png/1200px-H3_TsavoHighway_Loadscreen.png', 
-'The Storm' : 'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/7d4cc70b-f7c4-499a-a91a-f3e86b8b39f0/d6dqam6-ac02e111-a731-4cb2-b201-97a687cd45cf.jpg/v1/fill/w_1024,h_600,q_75,strp/halo_3___the_storm_by_halomika_d6dqam6-fullview.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9NjAwIiwicGF0aCI6IlwvZlwvN2Q0Y2M3MGItZjdjNC00OTlhLWE5MWEtZjNlODZiOGIzOWYwXC9kNmRxYW02LWFjMDJlMTExLWE3MzEtNGNiMi1iMjAxLTk3YTY4N2NkNDVjZi5qcGciLCJ3aWR0aCI6Ijw9MTAyNCJ9XV0sImF1ZCI6WyJ1cm46c2VydmljZTppbWFnZS5vcGVyYXRpb25zIl19.0HGvyT92E4wlijbMkxwpKU-ZRi25kyMT3Ig0ncjY8-I', 
-'Floodgate' : 'https://halo.wiki.gallery/images/thumb/6/67/H3_Floodgate_Loadscreen.png/1200px-H3_Floodgate_Loadscreen.png', 
-'The Ark' : 'https://halo.wiki.gallery/images/thumb/1/1a/H3_TheArk_Loadscreen.png/1200px-H3_TheArk_Loadscreen.png', 
-'The Covenant' : 'https://i.ytimg.com/vi/qgVQ0Hl7A30/sddefault.jpg', 
-'Cortana' : 'https://halo.wiki.gallery/images/thumb/8/82/High_Charity_Infested.jpg/1200px-High_Charity_Infested.jpg', 
-'Halo' : 'https://pm1.aminoapps.com/6442/d55f670a773789b57658939395dd4181fc36585d_hq.jpg', 
-'Epilogue' : 'https://halo.wiki.gallery/images/thumb/d/d4/H3_Epilogue_Loadscreen.png/1200px-H3_Epilogue_Loadscreen.png'
+'ARRIVAL' : 'https://live.staticflickr.com/7782/17523073088_3986615bce_b.jpg',
+'SIERRA 117' : 'https://mp1st.com/wp-content/uploads/2022/04/Screenshot_31.png', 
+'CROWS NEST' : 'https://halo.wiki.gallery/images/thumb/3/34/H3_CrowsNest_Loadscreen.png/1200px-H3_CrowsNest_Loadscreen.png', 
+'TSAVO HIGHWAY' : 'https://halo.wiki.gallery/images/thumb/d/d6/H3_TsavoHighway_Loadscreen.png/1200px-H3_TsavoHighway_Loadscreen.png', 
+'THE STORM' : 'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/7d4cc70b-f7c4-499a-a91a-f3e86b8b39f0/d6dqam6-ac02e111-a731-4cb2-b201-97a687cd45cf.jpg/v1/fill/w_1024,h_600,q_75,strp/halo_3___the_storm_by_halomika_d6dqam6-fullview.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9NjAwIiwicGF0aCI6IlwvZlwvN2Q0Y2M3MGItZjdjNC00OTlhLWE5MWEtZjNlODZiOGIzOWYwXC9kNmRxYW02LWFjMDJlMTExLWE3MzEtNGNiMi1iMjAxLTk3YTY4N2NkNDVjZi5qcGciLCJ3aWR0aCI6Ijw9MTAyNCJ9XV0sImF1ZCI6WyJ1cm46c2VydmljZTppbWFnZS5vcGVyYXRpb25zIl19.0HGvyT92E4wlijbMkxwpKU-ZRi25kyMT3Ig0ncjY8-I', 
+'FLOODGATE' : 'https://halo.wiki.gallery/images/thumb/6/67/H3_Floodgate_Loadscreen.png/1200px-H3_Floodgate_Loadscreen.png', 
+'THE ARK' : 'https://halo.wiki.gallery/images/thumb/1/1a/H3_TheArk_Loadscreen.png/1200px-H3_TheArk_Loadscreen.png', 
+'THE COVENANT' : 'https://i.ytimg.com/vi/qgVQ0Hl7A30/sddefault.jpg', 
+'CORTANA' : 'https://halo.wiki.gallery/images/thumb/8/82/High_Charity_Infested.jpg/1200px-High_Charity_Infested.jpg', 
+'HALO' : 'https://pm1.aminoapps.com/6442/d55f670a773789b57658939395dd4181fc36585d_hq.jpg', 
+'EPILOGUE' : 'https://halo.wiki.gallery/images/thumb/d/d4/H3_Epilogue_Loadscreen.png/1200px-H3_Epilogue_Loadscreen.png'
 }
 
 const lobbies = [
@@ -108,7 +112,7 @@ if(trailer_escape_btn){
 
 /** CAMPAIGN PAGE */
 const get_mission = (e)=>{
-    let mission = e.target.innerText;
+    mission = e.target.innerText;
     let link = missions[mission]
     console.log(mission, link)
     
@@ -150,7 +154,16 @@ const create_mission_list = () =>{
     let mission_list = document.getElementById('mission_list');
     let lobby_list = document.getElementById('lobby-list')
     const mission_display = document.getElementById('mission-display');
+    const iframe = document.getElementById('vid-iframe');
+    const stopButton = document.getElementById('mission-stop-btn');
 
+    if(stopButton){
+        stopButton.remove()
+    }
+
+    if(iframe){
+        iframe.remove()
+    }
 
     if(difficulty_list){
         difficulty_list.remove();
@@ -226,6 +239,15 @@ const campaign_switch_lobby_toggle = () =>{
     let difficulty_list = document.getElementById('difficulty-list');
     let mission_list = document.getElementById('mission_list');
     let lobby_list = document.getElementById('lobby-list')
+    const iframe = document.getElementById('vid-iframe');
+    const stopButton = document.getElementById('mission-stop-btn');
+
+    if(stopButton){
+        stopButton.remove()
+    }
+    if(iframe){
+        iframe.remove()
+    }
 
     if(difficulty_list){
         difficulty_list.remove();
@@ -292,6 +314,15 @@ const select_difficulty = () =>{
     let difficulty_list = document.getElementById('difficulty-list');
     let mission_list = document.getElementById('mission_list');
     let lobby_list = document.getElementById('lobby-list')
+    const iframe = document.getElementById('vid-iframe');
+    const stopButton = document.getElementById('mission-stop-btn');
+
+    if(stopButton){
+        stopButton.remove()
+    }
+    if(iframe){
+        iframe.remove()
+    }
 
     if(lobby_list){
         lobby_list.remove()
@@ -334,6 +365,61 @@ const select_difficulty = () =>{
 
 }
 
+const play_mission = () => {
+    let iframe = document.getElementById('vid-iframe');
+    let difficulty_list = document.getElementById('difficulty-list');
+    let mission_list = document.getElementById('mission_list');
+    let lobby_list = document.getElementById('lobby-list')
+
+    if(difficulty_list){
+        difficulty_list.remove();
+    }
+
+    if(mission_list){
+        mission_list.remove();
+    }
+
+    if(lobby_list){
+        lobby_list.remove();
+    }
+    
+    if(!iframe){
+        console.log('starting');
+        const link = missions[mission];
+
+        // Extract the video ID from the YouTube URL
+        const videoId = link.match(/[?&]v=([^?&]+)/)[1];
+
+        // Create an iframe element
+        iframe = document.createElement('iframe');
+        iframe.setAttribute('id', 'vid-iframe');
+        iframe.width = '1280'; // Adjust width as needed
+        iframe.height = '720'; // Adjust height as needed
+        iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1`; // Use the embed URL
+        iframe.style.position = 'fixed';
+        iframe.style.left = '500px'
+        iframe.style.bottom = '300px'
+
+
+        // Append the iframe element to the body or another container
+        body.appendChild(iframe);
+
+        // Add a stop button
+        const stopButton = document.createElement('button');
+        stopButton.setAttribute('id', 'mission-stop-btn');
+        stopButton.textContent = 'Stop Video';
+        stopButton.addEventListener('click', function () {
+            console.log('Stopping video');
+            iframe.remove();
+            stopButton.remove();
+        });
+
+        // Append the stop button to the body or another container
+        body.appendChild(stopButton);
+    }
+};
+
+
 if(select_mission_btn){
     select_mission_btn.addEventListener('click', create_mission_list);
 }
@@ -346,7 +432,9 @@ if(difficulty_select_btn){
     difficulty_select_btn.addEventListener('click', select_difficulty);
 }
 
-
+if(start_btn){
+    start_btn.addEventListener('click', play_mission);
+}
 
 /**     THEATER PAGE     */
 
