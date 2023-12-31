@@ -1,3 +1,4 @@
+
 #myVideo {
     position: fixed;
     right: 0;
@@ -24,14 +25,14 @@
 }
 
 #halo3{
-    position: fixed;
+    position: relative;
     left:1500px;
     top: 700px;
     font-size: 100px;
     font-family: 'Halo', sans-serif;
     color: lightblue;
     z-index: -1;
-    
+    display: block;
 }
 
 #Asad-Imran{
@@ -199,9 +200,28 @@
   top: 300px;
   position: relative;
   font-size: xx-large;
+  animation: blinker 2s linear infinite;
+}
+@keyframes blinker {
+  50% {
+    opacity: 0;
+  }
 }
 
 
+#campaign-menu{
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  width: 600px;
+}
+#campaign-header{
+  color: lightblue;
+  font-family: sans-serif;
+  position: relative;
+  left: 50px;
+  font-size: 60px;
+}
 
 
 

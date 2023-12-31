@@ -7,7 +7,27 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    campaign page
+    <video autoplay muted loop id="myVideo">
+        <source src="/assets/fly-by.mp4" type="video/mp4">
+      </video>
+        <div id="campaign-menu">
+            <h1 id="campaign-header">CAMPAIGN</h1>
+            <ul id="campaign-main-list">
+                <span class="menu" id="switch-lobby-span">
+                    <button class="menu-btn" id="campaign-switch-lobby-btn">SWITCH LOBBY</button>
+                </span>
+                <span class="menu" id="mission-select-span">
+                    <button class="menu-btn" id="mission-select-btn">MISSION</button>
+                </span>
+                <span class="menu" id="difficulty-select-span">
+                    <button class="menu-btn" id="difficulty-select-btn">DIFFICULTY</button>
+                </span>
+                <span class="menu" id="start-span">
+                    <button class="menu-btn" id="start-btn">START</button>
+                </span>
+            </ul>
+        </div>
+    
     <script src="app.js"></script>
 </body>
 </html>
